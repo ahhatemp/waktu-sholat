@@ -1,0 +1,183 @@
+/* ============================================================
+   Design Tokens — Aplikasi Waktu Sholat
+   Tiga lapis: Primitive → Semantic → Component
+   Sumber: .agents/DESIGN.md
+   ============================================================ */
+
+:root {
+  /* ---------- Primitive: Hijau ---------- */
+  --green-50: #e8f5f0;
+  --green-100: #c5e8db;
+  --green-200: #9dd8c2;
+  --green-300: #6fc4a6;
+  --green-400: #3fae8b;
+  --green-500: #1f9573;
+  --green-600: #137a5e;
+  --green-700: #0f6149;
+  --green-800: #0b4a38;
+  --green-900: #073327;
+  --green-950: #04201a;
+
+  /* ---------- Primitive: Emas ---------- */
+  --gold-100: #fbefd0;
+  --gold-300: #f2cf7a;
+  --gold-500: #d9a21e;
+  --gold-800: #7a5600;
+  --gold-950: #4a3300;
+
+  /* ---------- Primitive: Netral ---------- */
+  --neutral-0: #ffffff;
+  --neutral-50: #f7f8f7;
+  --neutral-100: #eef1ef;
+  --neutral-200: #dde2df;
+  --neutral-300: #c3cac6;
+  --neutral-400: #9aa39e;
+  --neutral-500: #6f7873;
+  --neutral-600: #535b57;
+  --neutral-700: #3b423f;
+  --neutral-800: #262b29;
+  --neutral-900: #171b19;
+  --neutral-950: #0e1110;
+
+  /* ---------- Primitive: Status ---------- */
+  --red-300: #f29c93;
+  --red-600: #c0392b;
+
+  /* ---------- Primitive: Spasi (basis 4) ---------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  /* ---------- Primitive: Radius ---------- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 999px;
+
+  /* ---------- Primitive: Elevasi ---------- */
+  --elevation-0: none;
+  --elevation-1: 0 1px 2px rgba(14, 17, 16, 0.08);
+  --elevation-2: 0 3px 10px rgba(14, 17, 16, 0.14);
+
+  /* ---------- Primitive: Durasi ---------- */
+  --duration-fast: 100ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+
+  /* ---------- Primitive: Tipografi ---------- */
+  --font-sans: Roboto, "Segoe UI", system-ui, -apple-system, sans-serif;
+  --text-display: 44px;
+  --text-headline: 28px;
+  --text-title-lg: 22px;
+  --text-title-md: 16px;
+  --text-body-lg: 16px;
+  --text-body-md: 14px;
+  --text-label: 14px;
+  --text-caption: 12px;
+
+  /* ---------- Semantic: Terang ---------- */
+  color-scheme: light;
+  --background: var(--neutral-50);
+  --surface: var(--neutral-0);
+  --surface-variant: var(--neutral-100);
+  --on-surface: var(--neutral-900);
+  --on-surface-variant: var(--neutral-600);
+  --primary: var(--green-700);
+  --on-primary: var(--neutral-0);
+  --primary-container: var(--green-100);
+  --on-primary-container: var(--green-900);
+  --accent: var(--gold-800);
+  --accent-container: var(--gold-100);
+  --on-accent-container: var(--gold-950);
+  --outline: var(--neutral-500);
+  --outline-variant: var(--neutral-200);
+  --error: var(--red-600);
+  --warning-container: var(--gold-100);
+  --on-warning-container: var(--gold-950);
+
+  /* ---------- Semantic: Spasi ---------- */
+  --spacing-screen: var(--space-4);
+  --spacing-section: var(--space-6);
+  --spacing-component: var(--space-3);
+  --spacing-inline: var(--space-2);
+  --touch-target-min: 48px;
+
+  /* ---------- Component tokens ---------- */
+  --prayer-row-bg: var(--surface);
+  --prayer-row-bg-next: var(--primary-container);
+  --prayer-row-fg: var(--on-surface);
+  --prayer-row-fg-next: var(--on-primary-container);
+  --prayer-row-fg-past: var(--on-surface-variant);
+  --prayer-row-height: 56px;
+  --prayer-row-padding: var(--space-4);
+  --prayer-row-radius: var(--radius-md);
+  --next-card-bg: var(--primary);
+  --next-card-fg: var(--on-primary);
+  --next-card-radius: var(--radius-lg);
+  --next-card-padding: var(--space-6);
+  --badge-bg: var(--accent-container);
+  --badge-fg: var(--on-accent-container);
+  --banner-bg: var(--warning-container);
+  --banner-fg: var(--on-warning-container);
+  --bottom-bar-bg: var(--surface);
+  --settings-item-height: 56px;
+  --search-bg: var(--surface-variant);
+  --widget-bg: var(--surface);
+  --widget-text-primary: var(--on-surface);
+  --widget-text-secondary: var(--on-surface-variant);
+  --widget-highlight-bg: var(--primary-container);
+  --widget-highlight-fg: var(--on-primary-container);
+}
+
+/* ---------- Semantic: Gelap ---------- */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --background: var(--neutral-950);
+  --surface: var(--neutral-900);
+  --surface-variant: var(--neutral-800);
+  --on-surface: var(--neutral-50);
+  --on-surface-variant: var(--neutral-300);
+  --primary: var(--green-300);
+  --on-primary: var(--green-900);
+  --primary-container: var(--green-800);
+  --on-primary-container: var(--green-100);
+  --accent: var(--gold-300);
+  --accent-container: var(--gold-950);
+  --on-accent-container: var(--gold-100);
+  --outline: var(--neutral-400);
+  --outline-variant: var(--neutral-700);
+  --error: var(--red-300);
+  --warning-container: var(--gold-950);
+  --on-warning-container: var(--gold-100);
+  --elevation-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --elevation-2: 0 3px 10px rgba(0, 0, 0, 0.55);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --background: var(--neutral-950);
+    --surface: var(--neutral-900);
+    --surface-variant: var(--neutral-800);
+    --on-surface: var(--neutral-50);
+    --on-surface-variant: var(--neutral-300);
+    --primary: var(--green-300);
+    --on-primary: var(--green-900);
+    --primary-container: var(--green-800);
+    --on-primary-container: var(--green-100);
+    --accent: var(--gold-300);
+    --accent-container: var(--gold-950);
+    --on-accent-container: var(--gold-100);
+    --outline: var(--neutral-400);
+    --outline-variant: var(--neutral-700);
+    --error: var(--red-300);
+    --warning-container: var(--gold-950);
+    --on-warning-container: var(--gold-100);
+    --elevation-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --elevation-2: 0 3px 10px rgba(0, 0, 0, 0.55);
+  }
+}

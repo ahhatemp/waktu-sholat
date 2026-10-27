@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prototipe Desain — Aplikasi Waktu Sholat</title>
+  <meta name="description" content="Prototipe desain aplikasi waktu sholat berdasarkan DESIGN.md: Harian, Bulanan, Pengaturan, Cari Kota, Onboarding, dan Widget." />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="css/screens.css" />
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17.5 15.5A6.5 6.5 0 0 1 9 4.6a7.2 7.2 0 1 0 8.5 10.9Z" />
+            <path d="m16.5 5 .75 1.6 1.6.75-1.6.75L16.5 9.7l-.75-1.6-1.6-.75 1.6-.75Z" fill="currentColor" stroke="none" />
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">Aplikasi Waktu Sholat</h1>
+          <p class="brand-sub">Prototipe desain · Android · dari DESIGN.md</p>
+        </div>
+      </div>
+      <div class="topbar-spacer"></div>
+      <div class="segmented" id="theme-switch" role="group" aria-label="Tema prototipe">
+        <button type="button" data-theme-choice="light" aria-pressed="true">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          Terang
+        </button>
+        <button type="button" data-theme-choice="dark" aria-pressed="false">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/></svg>
+          Gelap
+        </button>
+        <button type="button" data-theme-choice="system" aria-pressed="false">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          Sistem
+        </button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <!-- ============ Rail navigasi ============ -->
+      <nav class="rail" aria-label="Daftar layar prototype">
+        <p class="rail-label">Layar</p>
+        <button type="button" data-go="harian" aria-current="true"><span class="rail-num">01</span>Harian</button>
+        <button type="button" data-go="bulanan"><span class="rail-num">02</span>Bulanan</button>
+        <button type="button" data-go="pengaturan"><span class="rail-num">03</span>Pengaturan</button>
+        <button type="button" data-go="cari"><span class="rail-num">04</span>Cari Kota</button>
+        <button type="button" data-go="onboarding"><span class="rail-num">05</span>Onboarding</button>
+        <button type="button" data-go="widget"><span class="rail-num">06</span>Widget</button>
+        <div class="rail-meta">
+          <strong>Token, bukan hex</strong>
+          Semua warna, spasi, dan radius pada layar memakai token semantic dari <em>tokens.css</em>.
+        </div>
+      </nav>
+
+      <!-- ============ Panggung HP ============ -->
+      <main class="stage">
+        <div class="device" id="device" data-screen="harian">
+          <div class="device-status">
+            <span class="tnum">09.24</span>
+            <span class="icons" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 20v-3M10 20v-6M15 20v-9M20 20V5"/></svg>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12.5a10 10 0 0 1 14 0M8 16a6 6 0 0 1 8 0M12 19.5h.01"/></svg>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="7" width="17" height="10" rx="2.5"/><path d="M22 10.5v3" stroke-linecap="round"/><rect x="4.5" y="9.5" width="10" height="5" rx="1" fill="currentColor" stroke="none"/></svg>
+            </span>
+          </div>
+
+          <!-- ================= HARIAN ================= -->
+          <section class="screen is-active" id="screen-harian" aria-label="Layar harian">
+            <div class="screen-scroll">
+              <div class="content with-bottombar">
+                <div class="home-head">
+                  <button type="button" class="location-btn" data-go="cari" aria-label="Ubah lokasi">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary)" aria-hidden="true"><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
+                    <span>
+                      <span class="location-name" id="loc-name">Jakarta Selatan</span>
+                      <span class="location-meta">27 Okt 2026 · 16 Jumadil Awal 1448 H</span>
+                    </span>
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--on-surface-variant)" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                  </button>
+                  <button type="button" class="icon-btn" data-go="pengaturan" aria-label="Buka pengaturan">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="9" cy="7" r="2" fill="var(--background)"/><circle cx="15" cy="12" r="2" fill="var(--background)"/><circle cx="8" cy="17" r="2" fill="var(--background)"/></svg>
+                  </button>
+                </div>
+
+                <section class="next-card" aria-label="Sholat berikutnya">
+                  <div class="next-top">
+                    <span class="badge"><span class="badge-dot"></span>Berikutnya</span>
+                    <span style="font-size: 12px; opacity: .78" class="tnum">WIB</span>
+                  </div>
+                  <p class="next-name">Dzuhur</p>
+                  <p class="next-time tnum">11.52</p>
+                  <div class="countdown" id="countdown" aria-label="Dzuhur dalam 2 jam 28 menit">
+                    <span class="count-group"><span class="count-num tnum" data-cd="h">02</span><span class="count-label">Jam</span></span>
+                    <span class="count-sep" aria-hidden="true">:</span>
+                    <span class="count-group"><span class="count-num tnum" data-cd="m">28</span><span class="count-label">Menit</span></span>
+                    <span class="count-sep" aria-hidden="true">:</span>
+                    <span class="count-group"><span class="count-num tnum" data-cd="s">14</span><span class="count-label">Detik</span></span>
+                  </div>
+                  <div class="next-foot">
+                    <span>
+                      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
+                      <span id="loc-foot">Jakarta Selatan</span>
+                    </span>
+                    <span class="sep" aria-hidden="true"></span>
+                    <span>
+                      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+                      27 Okt 2026
+                    </span>
+                  </div>
+                </section>
+
+                <div class="banner" id="perm-banner" role="status">
+                  <span class="banner-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/><path d="m3 3 18 18"/></svg>
+                  </span>
+                  <span class="banner-text">
+                    <strong>Notifikasi belum aktif</strong>
+                    Adzan tidak akan berbunyi sampai izin diberikan.
+                  </span>
+                  <button type="button" class="btn-text" id="enable-notif">Aktifkan</button>
+                </div>
+
+                <div class="list-head">
+                  <h2>Jadwal hari ini</h2>
+                  <span>WIB · Kemenag RI</span>
+                </div>
+
+                <div class="prayer-list" role="list">
+                  <div class="prayer-row is-past" role="listitem">
+                    <span class="p-main"><span class="p-name">Imsak</span></span>
+                    <span class="p-time tnum">04.18</span>
+                    <button type="button" class="bell" data-on="false" aria-pressed="false" aria-label="Notifikasi Imsak nonaktif">
+                      <svg class="bell-off" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/><path d="m3 3 18 18"/></svg>
+                      <svg class="bell-on" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/></svg>
+                    </button>
+                  </div>
+
+                  <div class="prayer-row is-past" role="listitem">
+                    <span class="p-main"><span class="p-name">Subuh</span></span>
+                    <span class="p-time tnum">04.28</span>
+                    <button type="button" class="bell" data-on="true" aria-pressed="true" aria-label="Notifikasi Subuh aktif">
+                      <svg class="bell-off" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/><path d="m3 3 18 18"/></svg>
+                      <svg class="bell-on" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/></svg>
+                    </button>
+                  </div>
+
+                  <div class="prayer-row is-past" role="listitem">
+                    <span class="p-main"><span class="p-name">Terbit</span></span>
+                    <span class="p-time tnum">05.38</span>
+                    <button type="button" class="bell" data-on="false" aria-pressed="false" aria-label="Notifikasi Terbit nonaktif">
+                      <svg class="bell-off" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/><path d="m3 3 18 18"/></svg>
+                      <svg class="bell-on" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/></svg>
+                    </button>
+                  </div>
+
+                  <div class="prayer-row is-next" role="listitem" aria-current="true">
+                    <span class="p-main"><span class="p-name">Dzuhur</span><span class="badge"><span class="badge-dot"></span>Berikutnya</span></span>
+                    <span class="p-time tnum">11.52</span>
+                    <button type="button" class="bell" data-on="true" aria-pressed="true" aria-label="Notifikasi Dzuhur aktif">
+                      <svg class="bell-off" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/><path d="m3 3 18 18"/></svg>
+                      <svg class="bell-on" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/></svg>
+                    </button>
+                  </div>
+
+                  <div class="prayer-row" role="listitem">
+                    <span class="p-main"><span class="p-name">Ashar</span></span>
+                    <span class="p-time tnum">15.12</span>
+                    <button type="button" class="bell" data-on="true" aria-pressed="true" aria-label="Notifikasi Ashar aktif">
+                      <svg class="bell-off" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/><path d="m3 3 18 18"/></svg>
+                      <svg class="bell-on" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/></svg>
+                    </button>
+                  </div>
+
+                  <div class="prayer-row" role="listitem">
+                    <span class="p-main"><span class="p-name">Maghrib</span></span>
+                    <span class="p-time tnum">17.52</span>
+                    <button type="button" class="bell" data-on="true" aria-pressed="true" aria-label="Notifikasi Maghrib aktif">
+                      <svg class="bell-off" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/><path d="m3 3 18 18"/></svg>
+                      <svg class="bell-on" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/></svg>
+                    </button>
+                  </div>
+
+                  <div class="prayer-row" role="listitem">
+                    <span class="p-main"><span class="p-name">Isya</span></span>
+                    <span class="p-time tnum">19.02</span>
+                    <button type="button" class="bell" data-on="true" aria-pressed="true" aria-label="Notifikasi Isya aktif">
+                      <svg class="bell-off" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/><path d="m3 3 18 18"/></svg>
+                      <svg class="bell-on" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <nav class="bottom-bar" aria-label="Navigasi utama">
+              <button type="button" data-go="harian" aria-current="true">
+                <span class="nav-pill"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg></span>
+                Harian
+              </button>
+              <button type="button" data-go="bulanan">
+                <span class="nav-pill"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+                Bulanan
+              </button>
+              <button type="button" data-go="pengaturan">
+                <span class="nav-pill"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="9" cy="7" r="2" fill="var(--background)"/><circle cx="15" cy="12" r="2" fill="var(--background)"/><circle cx="8" cy="17" r="2" fill="var(--background)"/></svg></span>
+                Pengaturan
+              </button>
+            </nav>
+          </section>
+
+          <!-- ================= BULANAN ================= -->
+          <section class="screen" id="screen-bulanan" aria-label="Layar bulanan">
+            <div class="screen-scroll">
+              <div class="content with-bottombar">
+                <div class="page-head">
+                  <h1>Jadwal Bulanan</h1>
+                </div>
+
+                <div class="month-nav">
+                  <div class="month-label">Oktober 2026<small>31 hari · WIB</small></div>
+                  <div class="stepper">
+                    <button type="button" aria-label="Bulan sebelumnya">
+                      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>
+                    </button>
+                    <button type="button" aria-label="Bulan berikutnya">
+                      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="table-card">
+                  <table class="month-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Tgl</th>
+                        <th scope="col">Subuh</th>
+                        <th scope="col">Dzuhur</th>
+                        <th scope="col">Ashar</th>
+                        <th scope="col">Maghrib</th>
+                        <th scope="col">Isya</th>
+                      </tr>
+                    </thead>
+                    <tbody id="month-body"></tbody>
+                  </table>
+                </div>
+                <p class="month-foot">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+                  Dihitung offline · Metode Kemenag RI · Koreksi 0 menit
+                </p>
+              </div>
+            </div>
+            <nav class="bottom-bar" aria-label="Navigasi utama">
+              <button type="button" data-go="harian">
+                <span class="nav-pill"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg></span>
+                Harian
+              </button>
+              <button type="button" data-go="bulanan" aria-current="true">
+                <span class="nav-pill"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+                Bulanan
+              </button>
+              <button type="button" data-go="pengaturan">
+                <span class="nav-pill"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="9" cy="7" r="2" fill="var(--background)"/><circle cx="15" cy="12" r="2" fill="var(--background)"/><circle cx="8" cy="17" r="2" fill="var(--background)"/></svg></span>
+                Pengaturan
+              </button>
+            </nav>
+          </section>
+
+          <!-- ================= PENGATURAN ================= -->
+          <section class="screen" id="screen-pengaturan" aria-label="Layar pengaturan">
+            <div class="screen-scroll">
+              <div class="content with-bottombar">
+                <div class="page-head">
+                  <h1>Pengaturan</h1>
+                </div>
+
+                <section class="settings-group">
+                  <p class="section-label">Lokasi</p>
+                  <div class="settings-card">
+                    <button type="button" class="settings-row" data-go="cari">
+                      <span class="s-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
+                      </span>
+                      <span class="s-main">
+                        <span class="s-title" id="loc-name-settings">Jakarta Selatan</span>
+                        <span class="s-sub">Jadwal mengikuti lokasi ini</span>
+                      </span>
+                      <span class="s-value chevron">Ubah
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+                      </span>
+                    </button>
+                    <div class="divider"></div>
+                    <div class="settings-row">
+                      <span class="s-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6.5"/><circle cx="12" cy="12" r="2.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+                      </span>
+                      <span class="s-main">
+                        <span class="s-title">Deteksi otomatis</span>
+                        <span class="s-sub">Hanya saat aplikasi dibuka</span>
+                      </span>
+                      <button type="button" class="switch" role="switch" aria-checked="true" aria-label="Deteksi lokasi otomatis"></button>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="settings-group">
+                  <p class="section-label">Tampilan</p>
+                  <div class="settings-card">
+                    <div class="settings-row">
+                      <span class="s-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/></svg>
+                      </span>
+                      <span class="s-main">
+                        <span class="s-title">Tema</span>
+                        <span class="s-sub">Berlaku juga pada widget</span>
+                      </span>
+                    </div>
+                    <div class="theme-select" role="group" aria-label="Pilihan tema">
+                      <button type="button" data-app-theme="system" aria-pressed="true">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                        Ikuti sistem
+                      </button>
+                      <button type="button" data-app-theme="light" aria-pressed="false">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+                        Terang
+                      </button>
+                      <button type="button" data-app-theme="dark" aria-pressed="false">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/></svg>
+                        Gelap
+                      </button>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="settings-group">
+                  <p class="section-label">Perhitungan</p>
+                  <div class="settings-card">
+                    <button type="button" class="settings-row">
+                      <span class="s-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5M4 19h16"/><path d="m7 15 4-5 3 3 5-7"/></svg>
+                      </span>
+                      <span class="s-main">
+                        <span class="s-title">Metode perhitungan</span>
+                        <span class="s-sub">Sesuai acuan resmi</span>
+                      </span>
+                      <span class="s-value chevron">Kemenag RI
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+                      </span>
+                    </button>
+                    <div class="divider"></div>
+                    <button type="button" class="settings-row">
+                      <span class="s-main" style="padding-left: 44px">
+                        <span class="s-title">Mazhab Ashar</span>
+                      </span>
+                      <span class="s-value chevron">Syafi'i
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+                      </span>
+                    </button>
+                    <div class="divider"></div>
+                    <div class="settings-row">
+                      <span class="s-main" style="padding-left: 44px">
+                        <span class="s-title">Ihtiyath</span>
+                        <span class="s-sub">Pembulatan ke atas</span>
+                      </span>
+                      <div class="stepper-mini" role="group" aria-label="Ihtiyath menit">
+                        <button type="button" data-ihtiyath="-1" aria-label="Kurangi ihtiyath">
+                          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>
+                        </button>
+                        <output id="ihtiyath-value">+1</output>
+                        <button type="button" data-ihtiyath="1" aria-label="Tambah ihtiyath">
+                          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="divider"></div>
+                    <button type="button" class="settings-row">
+                      <span class="s-main" style="padding-left: 44px">
+                        <span class="s-title">Koreksi menit per waktu</span>
+                        <span class="s-sub">-10 sampai +10 menit</span>
+                      </span>
+                      <span class="s-value chevron">0
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+                      </span>
+                    </button>
+                  </div>
+                </section>
+
+                <section class="settings-group">
+                  <p class="section-label">Notifikasi</p>
+                  <div class="settings-card">
+                    <div class="settings-row">
+                      <span class="s-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/></svg>
+                      </span>
+                      <span class="s-main">
+                        <span class="s-title">Adzan</span>
+                        <span class="s-sub">Notifikasi utama</span>
+                      </span>
+                      <button type="button" class="switch" id="sw-adzan" role="switch" aria-checked="false" aria-label="Aktifkan adzan"></button>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="settings-row">
+                      <span class="s-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                      </span>
+                      <span class="s-main">
+                        <span class="s-title">Pengingat sebelum adzan</span>
+                        <span class="s-sub">10 menit sebelum</span>
+                      </span>
+                      <button type="button" class="switch" role="switch" aria-checked="false" aria-label="Pengingat sebelum adzan"></button>
+                    </div>
+                    <div class="divider"></div>
+                    <button type="button" class="settings-row">
+                      <span class="s-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15 9a4 4 0 0 1 0 6M18 6a8 8 0 0 1 0 12"/></svg>
+                      </span>
+                      <span class="s-main">
+                        <span class="s-title">Suara adzan</span>
+                        <span class="s-sub">Subuh: adzan penuh</span>
+                      </span>
+                      <span class="s-value chevron">Adzan singkat
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+                      </span>
+                    </button>
+                    <div class="divider"></div>
+                    <button type="button" class="settings-row">
+                      <span class="s-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 5 3.5 8 7 9 3.5-1 7-4 7-9V6Z"/><path d="m9 12 2 2 4-4"/></svg>
+                      </span>
+                      <span class="s-main">
+                        <span class="s-title">Panduan baterai</span>
+                        <span class="s-sub">Agar alarm tidak dimatikan sistem</span>
+                      </span>
+                      <span class="s-value chevron">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+                      </span>
+                    </button>
+                  </div>
+                </section>
+
+                <section class="settings-group">
+                  <p class="section-label">Notifikasi per waktu</p>
+                  <div class="settings-card">
+                    <div class="settings-row">
+                      <span class="s-main"><span class="s-title">Subuh</span></span>
+                      <button type="button" class="switch" role="switch" aria-checked="true" aria-label="Notifikasi Subuh"></button>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="settings-row">
+                      <span class="s-main"><span class="s-title">Dzuhur</span></span>
+                      <button type="button" class="switch" role="switch" aria-checked="true" aria-label="Notifikasi Dzuhur"></button>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="settings-row">
+                      <span class="s-main"><span class="s-title">Ashar</span></span>
+                      <button type="button" class="switch" role="switch" aria-checked="true" aria-label="Notifikasi Ashar"></button>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="settings-row">
+                      <span class="s-main"><span class="s-title">Maghrib</span></span>
+                      <button type="button" class="switch" role="switch" aria-checked="true" aria-label="Notifikasi Maghrib"></button>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="settings-row">
+                      <span class="s-main"><span class="s-title">Isya</span></span>
+                      <button type="button" class="switch" role="switch" aria-checked="true" aria-label="Notifikasi Isya"></button>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="settings-group">
+                  <p class="section-label">Lainnya</p>
+                  <div class="settings-card">
+                    <button type="button" class="settings-row">
+                      <span class="s-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+                      </span>
+                      <span class="s-main"><span class="s-title">Cadangan &amp; pemulihan</span><span class="s-sub">Berkas lokal, tanpa akun</span></span>
+                      <span class="s-value chevron">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+                      </span>
+                    </button>
+                    <div class="divider"></div>
+                    <button type="button" class="settings-row">
+                      <span class="s-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 5 3.5 8 7 9 3.5-1 7-4 7-9V6Z"/><path d="M12 11v3M12 8h.01"/></svg>
+                      </span>
+                      <span class="s-main"><span class="s-title">Kebijakan privasi</span><span class="s-sub">Tanpa iklan dan pelacak</span></span>
+                      <span class="s-value chevron">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+                      </span>
+                    </button>
+                    <div class="divider"></div>
+                    <button type="button" class="settings-row">
+                      <span class="s-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+                      </span>
+                      <span class="s-main"><span class="s-title">Tentang aplikasi</span><span class="s-sub">Versi 1.0.0 · gratis sepenuhnya</span></span>
+                      <span class="s-value chevron">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+                      </span>
+                    </button>
+                  </div>
+                </section>
+                <p class="version-line">Dibuat dengan token desain yang sama untuk aplikasi dan widget.</p>
+              </div>
+            </div>
+            <nav class="bottom-bar" aria-label="Navigasi utama">
+              <button type="button" data-go="harian">
+                <span class="nav-pill"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg></span>
+                Harian
+              </button>
+              <button type="button" data-go="bulanan">
+                <span class="nav-pill"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+                Bulanan
+              </button>
+              <button type="button" data-go="pengaturan" aria-current="true">
+                <span class="nav-pill"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="9" cy="7" r="2" fill="var(--background)"/><circle cx="15" cy="12" r="2" fill="var(--background)"/><circle cx="8" cy="17" r="2" fill="var(--background)"/></svg></span>
+                Pengaturan
+              </button>
+            </nav>
+          </section>
+
+          <!-- ================= CARI KOTA ================= -->
+          <section class="screen" id="screen-cari" aria-label="Layar cari kota">
+            <div class="screen-scroll">
+              <div class="content">
+                <div class="page-head">
+                  <button type="button" class="icon-btn" data-go="harian" aria-label="Kembali">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                  </button>
+                  <h1>Cari Kota</h1>
+                </div>
+
+                <div class="search-wrap">
+                  <div class="search-field">
+                    <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+                    <input type="search" id="city-search" placeholder="Ketik nama kota atau kabupaten" autocomplete="off" aria-label="Cari kota" />
+                  </div>
+                </div>
+
+                <p class="search-hint" id="search-hint">Kota populer · pencarian berjalan offline</p>
+                <div class="result-list" id="city-results" aria-label="Hasil pencarian kota"></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ================= ONBOARDING ================= -->
+          <section class="screen" id="screen-onboarding" aria-label="Layar onboarding">
+            <div class="screen-scroll">
+              <div class="ob-screen" id="ob-steps">
+                <section class="ob-step is-active" data-step="0">
+                  <div class="ob-top"></div>
+                  <div class="ob-art" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                  </div>
+                  <p class="ob-kicker">Langkah 1 dari 4</p>
+                  <h1 class="ob-title">Jadwal sholat sesuai lokasi Anda</h1>
+                  <p class="ob-body">Izinkan aplikasi membaca lokasi sekali saat setup. Koordinat disimpan di perangkat dan tidak dikirim ke mana pun.</p>
+                  <div class="ob-spacer"></div>
+                  <div class="ob-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span></div>
+                  <div class="ob-actions">
+                    <button type="button" class="btn btn-primary btn-block" data-ob-next>Gunakan lokasi saya</button>
+                    <button type="button" class="btn btn-text" data-go="cari">Pilih kota manual</button>
+                  </div>
+                </section>
+
+                <section class="ob-step" data-step="1">
+                  <div class="ob-top">
+                    <button type="button" class="btn-text" data-ob-skip>Lewati</button>
+                  </div>
+                  <div class="ob-art" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/><path d="M12 2c1.5 1 2 2 2 3"/></svg>
+                  </div>
+                  <p class="ob-kicker">Langkah 2 dari 4</p>
+                  <h1 class="ob-title">Adzan tepat waktu di HP Anda</h1>
+                  <p class="ob-body">Aktifkan notifikasi agar adzan berbunyi setiap waktu sholat. Pengaturan per waktu bisa diubah kapan saja.</p>
+                  <div class="ob-spacer"></div>
+                  <div class="ob-dots" aria-hidden="true"><span></span><span class="is-on"></span><span></span><span></span></div>
+                  <div class="ob-actions">
+                    <button type="button" class="btn btn-primary btn-block" data-ob-next>Izinkan notifikasi</button>
+                    <button type="button" class="btn btn-text" data-ob-skip>Lewati untuk sekarang</button>
+                  </div>
+                </section>
+
+                <section class="ob-step" data-step="2">
+                  <div class="ob-top">
+                    <button type="button" class="btn-text" data-ob-skip>Lewati</button>
+                  </div>
+                  <div class="ob-art" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="17" height="10" rx="2.5"/><path d="M22 10.5v3" stroke-linecap="round"/><path d="m6 12 2 2 4-4"/><path d="M15 12h1"/></svg>
+                  </div>
+                  <p class="ob-kicker">Langkah 3 dari 4</p>
+                  <h1 class="ob-title">Agar alarm tidak dimatikan sistem</h1>
+                  <p class="ob-body">Beberapa HP menghentikan alarm saat mode hemat baterai. Ikuti panduan singkat agar notifikasi tetap andal.</p>
+                  <div class="ob-note">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v5c0 5 3.5 8 7 9 3.5-1 7-4 7-9V6Z"/><path d="M12 11v3M12 8h.01"/></svg>
+                    Hanya diperlukan pada sebagian merek HP. Bisa dibuka lagi dari Pengaturan.
+                  </div>
+                  <div class="ob-spacer"></div>
+                  <div class="ob-dots" aria-hidden="true"><span></span><span></span><span class="is-on"></span><span></span></div>
+                  <div class="ob-actions">
+                    <button type="button" class="btn btn-primary btn-block" data-ob-next>Buka panduan baterai</button>
+                    <button type="button" class="btn btn-text" data-ob-skip>Lewati</button>
+                  </div>
+                </section>
+
+                <section class="ob-step" data-step="3">
+                  <div class="ob-top"></div>
+                  <div class="ob-art" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9.5"/></svg>
+                  </div>
+                  <p class="ob-kicker">Langkah 4 dari 4</p>
+                  <h1 class="ob-title">Semua siap digunakan</h1>
+                  <p class="ob-body">Jadwal hari ini sudah dihitung untuk <strong id="ob-loc">Jakarta Selatan</strong> dengan metode Kemenag RI. Widget siap ditambahkan ke layar utama.</p>
+                  <div class="ob-spacer"></div>
+                  <div class="ob-dots" aria-hidden="true"><span></span><span></span><span></span><span class="is-on"></span></div>
+                  <div class="ob-actions">
+                    <button type="button" class="btn btn-primary btn-block" data-ob-finish>Mulai gunakan</button>
+                    <button type="button" class="btn btn-text" data-go="pengaturan">Ubah pengaturan dulu</button>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </section>
+
+          <!-- ================= WIDGET ================= -->
+          <section class="screen" id="screen-widget" aria-label="Pratinjau widget">
+            <div class="screen-scroll">
+              <div class="home-wall">
+                <div class="wall-time">
+                  <div class="wt-clock tnum">09.24</div>
+                  <div class="wt-date">Senin, 27 Oktober 2026</div>
+                </div>
+
+                <div class="widget-stack">
+                  <section class="widget widget-small" aria-label="Widget kecil: sholat berikutnya">
+                    <span class="w-label">Berikutnya</span>
+                    <div class="ws-row">
+                      <span class="ws-name">Dzuhur</span>
+                      <span class="ws-time tnum">11.52</span>
+                    </div>
+                    <div class="ws-count tnum">dalam 2 jam 28 menit</div>
+                  </section>
+
+                  <section class="widget widget-large" aria-label="Widget besar: jadwal hari ini">
+                    <div class="wl-head">
+                      <span class="wl-title" id="widget-loc">Jakarta Selatan · 27 Okt</span>
+                      <span class="w-label">Hari ini</span>
+                    </div>
+                    <div class="wl-rows">
+                      <div class="wl-row"><span>Imsak</span><span class="wl-time">04.18</span></div>
+                      <div class="wl-row"><span>Subuh</span><span class="wl-time">04.28</span></div>
+                      <div class="wl-row"><span>Terbit</span><span class="wl-time">05.38</span></div>
+                      <div class="wl-row is-next"><span>Dzuhur</span><span class="wl-time">11.52</span></div>
+                      <div class="wl-row"><span>Ashar</span><span class="wl-time">15.12</span></div>
+                      <div class="wl-row"><span>Maghrib</span><span class="wl-time">17.52</span></div>
+                      <div class="wl-row"><span>Isya</span><span class="wl-time">19.02</span></div>
+                    </div>
+                  </section>
+                </div>
+
+                <div class="wall-icons" aria-hidden="true">
+                  <span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H4z"/><path d="M8 20h8"/></svg></span>
+                  <span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 1 1-3.5-6.6L21 4l-1.5 4.5A8 8 0 0 1 21 12Z"/></svg></span>
+                  <span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+                  <span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                  <span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5M4 19h16"/><path d="m7 15 4-5 3 3 5-7"/></svg></span>
+                  <span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span>
+                  <span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg></span>
+                  <span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span>
+                </div>
+
+                <div class="wall-dock" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+
+                <p class="widget-note">Widget kecil 2×1 sel dan widget besar 4×2 sel. Warna berasal dari token <em>widget_*</em> yang sama dengan aplikasi.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="stage-caption">
+          <span class="dot"></span>
+          Prototipe interaktif · 390 × 844 dp · <span id="caption-screen">Harian</span>
+        </div>
+      </main>
+
+      <!-- ============ Panel catatan ============ -->
+      <aside class="notes" aria-label="Catatan desain">
+        <section class="notes-section" data-notes="harian">
+          <div class="notes-card">
+            <p class="notes-kicker">Layar 01</p>
+            <h2 class="notes-title">Harian</h2>
+            <p>Satu informasi utama: sholat berikutnya dan hitung mundurnya. Daftar di bawahnya mendukung, bukan bersaing.</p>
+            <ul class="notes-list">
+              <li><strong>NextPrayerCard</strong> memakai <em>primary</em>; badge “Berikutnya” memberi penanda kedua selain warna.</li>
+              <li>Baris berikutnya memakai <em>primaryContainer</em> dan teks lebih tebal.</li>
+              <li>Angka jam dan hitung mundur memakai <em>tnum</em> agar tidak bergoyang.</li>
+              <li>Banner izin memakai <em>warningContainer</em> dan hilang setelah izin aktif.</li>
+              <li>Ikon lonceng membedakan bentuk aktif/nonaktif, bukan hanya warna.</li>
+            </ul>
+          </div>
+          <div class="notes-card">
+            <p class="notes-kicker">Token utama</p>
+            <div class="token-chips">
+              <span class="token-chip"><span class="token-swatch" style="background: var(--primary)"></span>primary</span>
+              <span class="token-chip"><span class="token-swatch" style="background: var(--primary-container)"></span>primaryContainer</span>
+              <span class="token-chip"><span class="token-swatch" style="background: var(--accent-container)"></span>accentContainer</span>
+              <span class="token-chip"><span class="token-swatch" style="background: var(--warning-container)"></span>warningContainer</span>
+            </div>
+            <ul class="notes-list">
+              <li>Target sentuh minimum 48 dp, termasuk ikon lonceng.</li>
+              <li>Hitung mundur dibacakan sebagai kalimat oleh TalkBack.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="notes-section" data-notes="bulanan" hidden>
+          <div class="notes-card">
+            <p class="notes-kicker">Layar 02</p>
+            <h2 class="notes-title">Bulanan</h2>
+            <p>Tabel penuh untuk merencanakan jauh hari, dihitung offline dan bisa digulir.</p>
+            <ul class="notes-list">
+              <li>Hari ini ditandai latar <em>primaryContainer</em> dan bilah <em>primary</em> di kiri.</li>
+              <li>Kolom tanggal tetap sempit; lima waktu wajib menjadi fokus.</li>
+              <li>Navigasi bulan sebelumnya/berikutnya berupa tombol 40 dp dengan area sentuh 48 dp.</li>
+              <li>Catatan metode dan koreksi menjaga kepercayaan pada angka.</li>
+            </ul>
+          </div>
+          <div class="notes-card">
+            <p class="notes-kicker">Token utama</p>
+            <div class="token-chips">
+              <span class="token-chip"><span class="token-swatch" style="background: var(--surface)"></span>surface</span>
+              <span class="token-chip"><span class="token-swatch" style="background: var(--surface-variant)"></span>surfaceVariant</span>
+              <span class="token-chip"><span class="token-swatch" style="background: var(--primary)"></span>primary</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="notes-section" data-notes="pengaturan" hidden>
+          <div class="notes-card">
+            <p class="notes-kicker">Layar 03</p>
+            <h2 class="notes-title">Pengaturan</h2>
+            <p>Dikelompokkan per kebutuhan agar tidak terasa banyak. Setiap baris minimal 56 dp dan seluruh baris dapat disentuh.</p>
+            <ul class="notes-list">
+              <li>Tema memakai segmented control; widget ikut berubah.</li>
+              <li>Ihtiyath memakai stepper kecil agar nilai mudah dibaca.</li>
+              <li>Panduan baterai tetap dapat dibuka ulang kapan saja.</li>
+              <li>Toggle memakai track <em>primary</em> dan label teks, bukan warna saja.</li>
+            </ul>
+          </div>
+          <div class="notes-card">
+            <p class="notes-kicker">Token utama</p>
+            <div class="token-chips">
+              <span class="token-chip"><span class="token-swatch" style="background: var(--surface)"></span>surface</span>
+              <span class="token-chip"><span class="token-swatch" style="background: var(--outline-variant)"></span>outlineVariant</span>
+              <span class="token-chip"><span class="token-swatch" style="background: var(--primary)"></span>primary</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="notes-section" data-notes="cari" hidden>
+          <div class="notes-card">
+            <p class="notes-kicker">Layar 04</p>
+            <h2 class="notes-title">Cari Kota</h2>
+            <p>Alternatif saat izin GPS ditolak. Database kota dibundel di dalam aplikasi, jadi pencarian tetap berjalan tanpa internet.</p>
+            <ul class="notes-list">
+              <li>Kolom pencarian berbentuk pil; fokus memunculkan batas 2 dp <em>primary</em>.</li>
+              <li>Setiap hasil menampilkan kota dan provinsi dengan tinggi 56 dp.</li>
+              <li>Kota terpilih ditandai ikon centang selain latar.</li>
+              <li>Coba ketik “band” atau “sura” pada prototipe.</li>
+            </ul>
+          </div>
+          <div class="notes-card">
+            <p class="notes-kicker">Token utama</p>
+            <div class="token-chips">
+              <span class="token-chip"><span class="token-swatch" style="background: var(--surface-variant)"></span>search.bg</span>
+              <span class="token-chip"><span class="token-swatch" style="background: var(--primary)"></span>search.border.focus</span>
+              <span class="token-chip"><span class="token-swatch" style="background: var(--outline-variant)"></span>divider</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="notes-section" data-notes="onboarding" hidden>
+          <div class="notes-card">
+            <p class="notes-kicker">Layar 05</p>
+            <h2 class="notes-title">Onboarding</h2>
+            <p>Empat langkah singkat: lokasi, notifikasi, baterai, selesai. Setiap izin bisa dilewati dan diatur ulang nanti.</p>
+            <ul class="notes-list">
+              <li>Ilustrasi hanya ikon vektor, tanpa aset bitmap besar.</li>
+              <li>Indikator langkah memakai empat titik; titik aktif memanjang.</li>
+              <li>Tombol “Lewati” adalah text button agar tidak bersaing dengan aksi utama.</li>
+              <li>Target selesai di bawah satu menit.</li>
+            </ul>
+          </div>
+          <div class="notes-card">
+            <p class="notes-kicker">Token utama</p>
+            <div class="token-chips">
+              <span class="token-chip"><span class="token-swatch" style="background: var(--primary-container)"></span>primaryContainer</span>
+              <span class="token-chip"><span class="token-swatch" style="background: var(--accent)"></span>accent</span>
+              <span class="token-chip"><span class="token-swatch" style="background: var(--on-surface-variant)"></span>onSurfaceVariant</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="notes-section" data-notes="widget" hidden>
+          <div class="notes-card">
+            <p class="notes-kicker">Layar 06</p>
+            <h2 class="notes-title">Widget</h2>
+            <p>Pratinjau layar utama Android: widget kecil 2×1 dan widget besar 4×2. Keduanya memakai token yang sama dengan aplikasi.</p>
+            <ul class="notes-list">
+              <li>Baris berikutnya disorot <em>widget.highlight.bg</em> dengan teks tebal.</li>
+              <li>Radius mengikuti sistem pada Android 12+; sebelumnya 16 dp.</li>
+              <li>Seluruh widget dapat disentuh untuk membuka aplikasi.</li>
+              <li>Kondisi khusus: “Atur lokasi”, “Jadwal tidak tersedia”, dan “Sekarang”.</li>
+            </ul>
+          </div>
+          <div class="notes-card">
+            <p class="notes-kicker">Token utama</p>
+            <div class="token-chips">
+              <span class="token-chip"><span class="token-swatch" style="background: var(--widget-bg)"></span>widget.bg</span>
+              <span class="token-chip"><span class="token-swatch" style="background: var(--widget-highlight-bg)"></span>highlight.bg</span>
+              <span class="token-chip"><span class="token-swatch" style="background: var(--widget-text-secondary)"></span>text.secondary</span>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

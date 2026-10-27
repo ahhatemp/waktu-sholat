@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Waktu Sholat</string>
+
+    <string name="nav_home">Harian</string>
+    <string name="nav_monthly">Bulanan</string>
+    <string name="nav_settings">Pengaturan</string>
+
+    <string name="home_placeholder_title">Jadwal Harian</string>
+    <string name="home_placeholder_body">Jadwal sholat harian akan tampil di sini.</string>
+    <string name="monthly_placeholder_title">Jadwal Bulanan</string>
+    <string name="monthly_placeholder_body">Jadwal sebulan penuh akan tampil di sini.</string>
+    <string name="settings_placeholder_title">Pengaturan</string>
+    <string name="settings_placeholder_body">Pengaturan aplikasi akan tampil di sini.</string>
+</resources>

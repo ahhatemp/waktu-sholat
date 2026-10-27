@@ -1,0 +1,697 @@
+/* ============================================================
+   Prototype shell + komponen dasar
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--on-surface);
+  background:
+    radial-gradient(1100px 600px at 8% -10%, rgba(111, 196, 166, 0.12), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(217, 162, 30, 0.08), transparent 55%),
+    var(--background);
+  transition: background-color var(--duration-normal) ease, color var(--duration-normal) ease;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+input {
+  font: inherit;
+  color: inherit;
+}
+
+svg {
+  display: block;
+  flex: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ---------------- Header prototipe ---------------- */
+
+.shell {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 28px 32px 48px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--green-700);
+  color: var(--green-50);
+  box-shadow: var(--elevation-1);
+}
+
+.brand-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.brand-sub {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--on-surface-variant);
+}
+
+.topbar-spacer {
+  flex: 1;
+}
+
+/* Segmented control tema */
+.segmented {
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  border: 1px solid var(--outline-variant);
+  box-shadow: var(--elevation-1);
+}
+
+.segmented button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: var(--radius-full);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--on-surface-variant);
+  transition: background-color var(--duration-fast) ease, color var(--duration-fast) ease;
+}
+
+.segmented button[aria-pressed="true"] {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+/* ---------------- Tata letak ---------------- */
+
+.layout {
+  display: grid;
+  grid-template-columns: 208px minmax(0, 1fr) 296px;
+  gap: 32px;
+  align-items: start;
+}
+
+/* ---------------- Rail navigasi ---------------- */
+
+.rail {
+  position: sticky;
+  top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.rail-label {
+  margin: 0 0 var(--space-2) 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+}
+
+.rail button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: var(--radius-md);
+  text-align: left;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--on-surface-variant);
+  transition: background-color var(--duration-fast) ease, color var(--duration-fast) ease;
+}
+
+.rail button:hover {
+  background: var(--surface-variant);
+}
+
+.rail button[aria-current="true"] {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.rail-num {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+}
+
+.rail button[aria-current="true"] .rail-num {
+  background: rgba(255, 255, 255, 0.18);
+  color: inherit;
+}
+
+.rail-meta {
+  margin-top: 20px;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--outline);
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--on-surface-variant);
+}
+
+.rail-meta strong {
+  display: block;
+  color: var(--on-surface);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+/* ---------------- Panggung HP ---------------- */
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding-top: 4px;
+}
+
+.device {
+  position: relative;
+  width: 390px;
+  height: 844px;
+  padding: 10px;
+  border-radius: 52px;
+  background: linear-gradient(160deg, #2b302e, #141716 55%, #242927);
+  box-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.10) inset,
+    0 30px 70px rgba(14, 17, 16, 0.28),
+    0 4px 14px rgba(14, 17, 16, 0.18);
+}
+
+.device::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 42px;
+  pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+}
+
+.device-status {
+  position: absolute;
+  top: 21px;
+  left: 34px;
+  right: 34px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--on-surface);
+  pointer-events: none;
+}
+
+.device-status .icons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.screen {
+  position: relative;
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  border-radius: 42px;
+  overflow: hidden;
+  background: var(--background);
+  color: var(--on-surface);
+  transition: background-color var(--duration-normal) ease;
+}
+
+.screen.is-active {
+  display: flex;
+}
+
+.screen-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  overscroll-behavior: contain;
+}
+
+.screen-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.content {
+  padding: var(--spacing-screen);
+  padding-top: 58px;
+}
+
+.content.with-bottombar {
+  padding-bottom: 24px;
+}
+
+.stage-caption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--on-surface-variant);
+}
+
+.stage-caption .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: var(--radius-full);
+  background: var(--primary);
+}
+
+/* ---------------- Panel catatan ---------------- */
+
+.notes {
+  position: sticky;
+  top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.notes-card {
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--outline-variant);
+  box-shadow: var(--elevation-1);
+}
+
+.notes-kicker {
+  margin: 0 0 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+}
+
+.notes-title {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.notes-card p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--on-surface-variant);
+}
+
+.notes-list {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.notes-list li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--on-surface-variant);
+}
+
+.notes-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 4px;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--primary);
+}
+
+.token-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.token-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px 4px 5px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--outline-variant);
+  background: var(--surface);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--on-surface-variant);
+}
+
+.token-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12) inset;
+}
+
+.notes-section[hidden] {
+  display: none;
+}
+
+/* ---------------- Komponen aplikasi ---------------- */
+
+.icon-btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: -8px;
+  border-radius: var(--radius-full);
+  color: var(--on-surface-variant);
+  transition: background-color var(--duration-fast) ease;
+}
+
+.icon-btn::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+}
+
+.icon-btn:hover {
+  background: var(--surface-variant);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--touch-target-min);
+  padding: 0 var(--space-6);
+  border-radius: var(--radius-full);
+  font-size: var(--text-label);
+  font-weight: 500;
+  transition:
+    background-color var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease,
+    opacity var(--duration-fast) ease;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.btn-primary:hover {
+  box-shadow: var(--elevation-2);
+}
+
+.btn-primary:active {
+  box-shadow: inset 0 0 0 100px rgba(0, 0, 0, 0.10);
+}
+
+.btn-tonal {
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+}
+
+.btn-tonal:active {
+  box-shadow: inset 0 0 0 100px rgba(0, 0, 0, 0.06);
+}
+
+.btn-text {
+  min-height: 40px;
+  padding: 0 var(--space-3);
+  color: var(--primary);
+  font-weight: 500;
+  border-radius: var(--radius-full);
+}
+
+.btn-text:hover {
+  background: var(--surface-variant);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--badge-bg);
+  color: var(--badge-fg);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.badge .badge-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: var(--radius-full);
+  background: currentColor;
+}
+
+.switch {
+  position: relative;
+  flex: none;
+  width: 44px;
+  height: 26px;
+  border-radius: var(--radius-full);
+  background: var(--surface-variant);
+  box-shadow: inset 0 0 0 1px var(--outline);
+  transition: background-color var(--duration-normal) ease, box-shadow var(--duration-normal) ease;
+}
+
+.switch::before {
+  content: "";
+  position: absolute;
+  inset: -11px -2px;
+}
+
+.switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  background: var(--outline);
+  transition: transform var(--duration-normal) cubic-bezier(0.2, 0, 0, 1), background-color var(--duration-normal) ease;
+}
+
+.switch[aria-checked="true"] {
+  background: var(--primary);
+  box-shadow: none;
+}
+
+.switch[aria-checked="true"]::after {
+  transform: translateX(18px);
+  background: var(--on-primary);
+}
+
+.section-label {
+  margin: 0 0 var(--space-2) var(--space-4);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+}
+
+.divider {
+  height: 1px;
+  background: var(--outline-variant);
+  margin-left: var(--space-4);
+}
+
+/* Bottom bar */
+.bottom-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  flex: none;
+  padding: 8px 12px 22px;
+  background: var(--bottom-bar-bg);
+  border-top: 1px solid var(--outline-variant);
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.02);
+}
+
+.bottom-bar button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-height: 54px;
+  padding: 6px 0 4px;
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--on-surface-variant);
+}
+
+.bottom-bar .nav-pill {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  transition: background-color var(--duration-fast) ease;
+}
+
+.bottom-bar button[aria-current="true"] {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.bottom-bar button[aria-current="true"] .nav-pill {
+  background: var(--primary-container);
+}
+
+/* ---------------- Responsif prototipe ---------------- */
+
+@media (max-width: 1180px) {
+  .layout {
+    grid-template-columns: 188px minmax(0, 1fr);
+  }
+
+  .notes {
+    position: static;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .shell {
+    padding: 20px 16px 40px;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .rail {
+    position: static;
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .rail-label,
+  .rail-meta {
+    display: none;
+  }
+
+  .rail button {
+    flex: none;
+    white-space: nowrap;
+  }
+
+  .notes {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .device {
+    width: 100%;
+    max-width: 390px;
+    height: min(844px, 92vh);
+    border-radius: 40px;
+  }
+
+  .screen {
+    border-radius: 32px;
+  }
+
+  .topbar {
+    gap: 12px;
+  }
+
+  .topbar-spacer {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+}
