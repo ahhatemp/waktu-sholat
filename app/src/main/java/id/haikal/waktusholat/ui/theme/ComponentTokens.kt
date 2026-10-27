@@ -4,6 +4,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 
 object PrayerRowTokens {
     val height: Dp = Dimens.PrayerRowHeight
@@ -36,4 +37,16 @@ object BottomBarTokens {
     val iconActive: Color @Composable get() = MaterialTheme.colorScheme.primary
     val iconInactive: Color @Composable get() = MaterialTheme.colorScheme.onSurfaceVariant
     val indicator: Color @Composable get() = MaterialTheme.colorScheme.primaryContainer
+}
+
+object MonthlyTableTokens {
+    val dateColumnWidth: Dp = 44.dp
+    val timeColumnWidth: Dp = 45.dp
+    val rowHeight: Dp = 40.dp
+    val headerHeight: Dp = 36.dp
+}
+
+object CitySearchTokens {
+    val progressSize: Dp = 18.dp
+    val progressStroke: Dp = 2.dp
 }

@@ -25,9 +25,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import id.haikal.waktusholat.R
+import id.haikal.waktusholat.ui.city.CitySearchScreen
 import id.haikal.waktusholat.ui.home.HomeScreen
 import id.haikal.waktusholat.ui.monthly.MonthlyScreen
 import id.haikal.waktusholat.ui.settings.SettingsScreen
+import id.haikal.waktusholat.ui.theme.BottomBarTokens
+
+private const val CITY_SEARCH_ROUTE = "city_search"
 
 enum class TopLevelDestination(
     val route: String,
@@ -46,38 +50,42 @@ fun AppNavHost(
 ) {
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
+    val showBottomBar = currentRoute == null ||
+        TopLevelDestination.entries.any { it.route == currentRoute }
 
     Scaffold(
         modifier = modifier,
         bottomBar = {
-            NavigationBar(containerColor = MaterialTheme.colorScheme.surface) {
-                TopLevelDestination.entries.forEach { destination ->
-                    NavigationBarItem(
-                        selected = currentRoute == destination.route,
-                        onClick = {
-                            navController.navigate(destination.route) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
+            if (showBottomBar) {
+                NavigationBar(containerColor = MaterialTheme.colorScheme.surface) {
+                    TopLevelDestination.entries.forEach { destination ->
+                        NavigationBarItem(
+                            selected = currentRoute == destination.route,
+                            onClick = {
+                                navController.navigate(destination.route) {
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
                                 }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
-                        },
-                        icon = {
-                            Icon(
-                                imageVector = destination.icon,
-                                contentDescription = null,
-                            )
-                        },
-                        label = { Text(stringResource(destination.labelRes)) },
-                        colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = MaterialTheme.colorScheme.primary,
-                            selectedTextColor = MaterialTheme.colorScheme.primary,
-                            indicatorColor = MaterialTheme.colorScheme.primaryContainer,
-                            unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                            unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                        ),
-                    )
+                            },
+                            icon = {
+                                Icon(
+                                    imageVector = destination.icon,
+                                    contentDescription = null,
+                                )
+                            },
+                            label = { Text(stringResource(destination.labelRes)) },
+                            colors = NavigationBarItemDefaults.colors(
+                                selectedIconColor = BottomBarTokens.iconActive,
+                                selectedTextColor = BottomBarTokens.iconActive,
+                                indicatorColor = BottomBarTokens.indicator,
+                                unselectedIconColor = BottomBarTokens.iconInactive,
+                                unselectedTextColor = BottomBarTokens.iconInactive,
+                            ),
+                        )
+                    }
                 }
             }
         },
@@ -88,13 +96,19 @@ fun AppNavHost(
             modifier = Modifier.padding(innerPadding),
         ) {
             composable(TopLevelDestination.Home.route) {
-                HomeScreen()
+                HomeScreen(onOpenCitySearch = { navController.navigate(CITY_SEARCH_ROUTE) })
             }
             composable(TopLevelDestination.Monthly.route) {
-                MonthlyScreen()
+                MonthlyScreen(onOpenCitySearch = { navController.navigate(CITY_SEARCH_ROUTE) })
             }
             composable(TopLevelDestination.Settings.route) {
                 SettingsScreen()
+            }
+            composable(CITY_SEARCH_ROUTE) {
+                CitySearchScreen(
+                    onBack = { navController.popBackStack() },
+                    onLocationSaved = { navController.popBackStack() },
+                )
             }
         }
     }

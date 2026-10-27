@@ -92,7 +92,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Buat `Prayer` (enum: Imsak, Subuh, Terbit, Dzuhur, Ashar, Maghrib, Isya), `PrayerTimes`, `City`, `CalculationMethod`, dan data class `Settings` dengan nilai default sesuai Tech Spec Bagian 2. Kode ini murni Kotlin, tanpa dependensi Android.
 - **Modul:** Lokasi & Jadwal Sholat
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-01
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 1,5 jam
@@ -102,7 +102,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Hitung 7 waktu per tanggal dan koordinat: pakai library Adhan (pastikan lisensinya kompatibel dengan T-04) atau implementasi sendiri. Terapkan metode Kemenag RI sebagai default, mazhab Ashar, ihtiyath, koreksi menit per waktu (-10 sampai +10, BR-03), dan konversi ke zona waktu lokasi (BR-07). Parameter Kemenag diverifikasi ke publikasi resmi (BR-01).
 - **Modul:** Lokasi & Jadwal Sholat
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-07
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 6 jam
@@ -112,7 +112,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Bandingkan keluaran engine dengan jadwal resmi Kemenag untuk beberapa kota (barat, tengah, timur Indonesia) pada beberapa bulan berbeda. Target selisih ≤ 1-2 menit. Tambahkan juga kasus ihtiyath, koreksi menit, dan pergantian hari.
 - **Modul:** Lokasi & Jadwal Sholat
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-08
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 4 jam
@@ -122,7 +122,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Kumpulkan data kabupaten/kota (sekitar 500 baris) dari sumber publik dengan lisensi jelas: nama, `name_search` (huruf kecil tanpa awalan Kab./Kota), provinsi, lintang, bujur, dan `timezone_id` (Asia/Jakarta, Makassar, Jayapura). Catat sumber dan lisensinya di repositori.
 - **Modul:** Lokasi & Jadwal Sholat
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-04
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 4 jam
@@ -132,7 +132,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Buat `CityEntity`, `CityDao` (pencarian awalan lewat `name_search`, ambil semua, cari terdekat), dan `AppDatabase` dengan `createFromAsset("cities.db")`. Tambahkan index pada `name_search` dan aktifkan schema export.
 - **Modul:** Lokasi & Jadwal Sholat
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-02, T-10
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 2 jam
@@ -142,7 +142,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Implementasikan key lokasi (`location_lat`, `location_lng`, `location_name`, `location_timezone`, `location_source`) dan key perhitungan (`calc_method`, `asr_madhab`, `offset_<prayer>`, `ihtiyath_enabled`) dengan default dari Tech Spec. Ekspos `settings: Flow<Settings>` dan fungsi `update { }`. Key notifikasi, suara, tema, dan ekspor/impor menyusul di Modul 3 dan 5.
 - **Modul:** Lokasi & Jadwal Sholat
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-02, T-07
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 3 jam
@@ -152,7 +152,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** `detectOnce()` memakai `LocationManager` bawaan dengan izin `ACCESS_COARSE_LOCATION`, timeout 15 detik, lalu mencocokkan koordinat ke kota terdekat di Room untuk mendapat nama dan `timezone_id`. Tangani GPS mati, izin ditolak, dan timeout lewat `Result`. `searchCity(query)` memakai `CityDao`. Tidak boleh memakai Google Play Services.
 - **Modul:** Lokasi & Jadwal Sholat
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-11, T-12
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 4 jam
@@ -162,7 +162,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Sediakan `getDay(date)`, `getMonth(year, month)`, dan `getNext(now)`. Baca pengaturan dari `SettingsRepository`, panggil `PrayerTimeEngine`, tanpa menyimpan hasil. `getNext()` mengembalikan Subuh esok hari jika semua waktu hari ini sudah lewat. Ini satu-satunya sumber jadwal untuk UI, alarm, dan widget.
 - **Modul:** Lokasi & Jadwal Sholat
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-08, T-12
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 3 jam
@@ -172,7 +172,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Hitung tanggal Hijriah offline memakai kalender Hijriah bawaan `java.time`. Format teks (misalnya "12 Rabiul Akhir 1448 H") dalam bahasa Indonesia. Catat di layar Tentang bahwa hasilnya bisa berbeda satu hari dari ketetapan Kemenag (BR-08).
 - **Modul:** Lokasi & Jadwal Sholat
 - **Prioritas:** Low
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-07
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 1,5 jam
@@ -182,7 +182,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** `HomeViewModel` + layar Compose: daftar 7 waktu, penanda waktu berjalan dan berikutnya, hitung mundur real-time, tanggal Masehi + Hijriah, dan nama lokasi. Tampilkan banner jika lokasi belum diatur. Banner izin alarm dan notifikasi ditambahkan di Modul 3.
 - **Modul:** Lokasi & Jadwal Sholat
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-06, T-14, T-15
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 5 jam
@@ -192,7 +192,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Tabel jadwal satu bulan yang bisa digulir, dengan tombol bulan sebelumnya dan berikutnya. Hari ini disorot. Perhitungan lewat `getMonth()`, dan harus selesai < 200 ms.
 - **Modul:** Lokasi & Jadwal Sholat
 - **Prioritas:** Mid
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-06, T-14
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 3 jam
@@ -202,7 +202,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Kolom pencarian dengan hasil dari `searchCity()` (nama, provinsi), plus tombol "Gunakan lokasi saya" yang memanggil `detectOnce()`. Memilih kota menyimpan lokasi ke DataStore. Pemicu penjadwalan ulang alarm dan widget ditambahkan di Modul 3 dan 4.
 - **Modul:** Lokasi & Jadwal Sholat
 - **Prioritas:** Mid
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-06, T-13
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 2,5 jam

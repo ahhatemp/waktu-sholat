@@ -1,15 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Waktu Sholat</string>
 
     <string name="nav_home">Harian</string>
     <string name="nav_monthly">Bulanan</string>
     <string name="nav_settings">Pengaturan</string>
 
-    <string name="home_placeholder_title">Jadwal Harian</string>
-    <string name="home_placeholder_body">Jadwal sholat harian akan tampil di sini.</string>
-    <string name="monthly_placeholder_title">Jadwal Bulanan</string>
-    <string name="monthly_placeholder_body">Jadwal sebulan penuh akan tampil di sini.</string>
+    <string name="prayer_imsak">Imsak</string>
+    <string name="prayer_subuh">Subuh</string>
+    <string name="prayer_terbit">Terbit</string>
+    <string name="prayer_dzuhur">Dzuhur</string>
+    <string name="prayer_ashar">Ashar</string>
+    <string name="prayer_maghrib">Maghrib</string>
+    <string name="prayer_isya">Isya</string>
+
+    <string name="home_next_badge">Berikutnya</string>
+    <string name="home_change_location">Ubah lokasi</string>
+    <string name="home_location_date">%1$s · %2$s</string>
+    <string name="home_no_location_title">Lokasi belum diatur</string>
+    <string name="home_no_location_body">Atur lokasi agar jadwal sholat sesuai dengan tempatmu.</string>
+    <string name="home_pick_location">Pilih kota</string>
+    <string name="home_schedule_unavailable">Jadwal tidak tersedia untuk lokasi ini.</string>
+    <string name="home_countdown_hours" tools:ignore="PluralsCandidate">%1$s dalam %2$d jam %3$d menit</string>
+    <string name="home_countdown_minutes" tools:ignore="PluralsCandidate">%1$s dalam %2$d menit</string>
+    <string name="home_countdown_soon">%1$s kurang dari semenit lagi</string>
+
+    <string name="monthly_prev">Bulan sebelumnya</string>
+    <string name="monthly_next">Bulan berikutnya</string>
+    <string name="monthly_date_column">Tanggal</string>
+
+    <string name="city_title">Cari Kota</string>
+    <string name="city_back">Kembali</string>
+    <string name="city_search_placeholder">Cari kota atau kabupaten</string>
+    <string name="city_use_location">Gunakan lokasi saya</string>
+    <string name="city_detecting">Mendeteksi lokasi…</string>
+    <string name="city_hint">Ketik nama kota atau kabupaten.</string>
+    <string name="city_no_results">Kota tidak ditemukan.</string>
+    <string name="city_error_permission">Izin lokasi ditolak. Pilih kota secara manual.</string>
+    <string name="city_error_disabled">Lokasi perangkat tidak aktif. Aktifkan GPS atau pilih kota manual.</string>
+    <string name="city_error_timeout">Lokasi tidak ditemukan. Coba lagi atau pilih kota manual.</string>
+    <string name="city_error_unavailable">Lokasi tidak tersedia. Pilih kota secara manual.</string>
+
     <string name="settings_placeholder_title">Pengaturan</string>
     <string name="settings_placeholder_body">Pengaturan aplikasi akan tampil di sini.</string>
 </resources>
