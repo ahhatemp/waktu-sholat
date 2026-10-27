@@ -26,7 +26,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Buat proyek Kotlin dengan Jetpack Compose, `minSdk 26`, dan satu `MainActivity`. Siapkan struktur paket `data/`, `domain/`, `alarm/`, `widget/`, `ui/` sesuai Tech Spec Bagian 1.
 - **Modul:** Setup Project
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** -
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 1 jam
@@ -36,7 +36,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Kunci versi di `libs.versions.toml`: Compose BOM, Material 3, Navigation Compose, Lifecycle/ViewModel, Room + KSP, DataStore, JUnit. Pastikan tidak ada Google Play Services, Firebase, atau SDK analitik/iklan (syarat F-Droid).
 - **Modul:** Setup Project
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-01
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 1 jam
@@ -46,7 +46,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Atur `allowBackup="false"` dan `dataExtractionRules` yang mengecualikan semua data. Pastikan tidak ada izin `INTERNET`. Tetapkan `exported="false"` sebagai default untuk komponen internal.
 - **Modul:** Setup Project
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-01
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 0,5 jam
@@ -56,7 +56,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Buat repositori GitHub, `.gitignore` Android (termasuk keystore), `README.md` singkat, dan pilih lisensi (GPL-3.0 atau Apache-2.0/MIT). Keputusan lisensi harus selesai di sini karena F-Droid mensyaratkannya.
 - **Modul:** Setup Project
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-01
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 1 jam
@@ -66,7 +66,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Workflow yang berjalan pada push dan pull request: build `debug`, jalankan unit test, jalankan Android Lint. (Workflow rilis ditangani di Modul 6.)
 - **Modul:** Setup Project
 - **Prioritas:** Mid
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-02, T-04
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 1,5 jam
@@ -76,7 +76,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Buat tema Material 3 (terang, gelap, ikuti sistem) dan `NavHost` dengan bottom bar tiga tujuan (Harian, Bulanan, Pengaturan). Isi layar masih placeholder. Rute lain sesuai Tech Spec Bagian 3 ditambahkan di modul masing-masing.
 - **Modul:** Setup Project
 - **Prioritas:** Mid
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-02
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 2 jam
