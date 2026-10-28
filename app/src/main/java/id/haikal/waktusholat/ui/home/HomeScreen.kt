@@ -11,12 +11,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -27,6 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
@@ -83,34 +86,46 @@ private fun HomeContent(
                 }
 
                 else -> {
-                    LazyColumn(
-                        modifier = Modifier.fillMaxSize(),
-                        contentPadding = PaddingValues(
-                            start = Dimens.Space4,
-                            end = Dimens.Space4,
-                            bottom = Dimens.Space6,
-                        ),
-                        verticalArrangement = Arrangement.spacedBy(Dimens.Space3),
-                    ) {
-                        item {
-                            val next = state.next
-                            if (next == null) {
-                                ScheduleUnavailableCard()
-                            } else {
-                                NextPrayerCard(state = state, next = next)
+                    Column(modifier = Modifier.fillMaxSize()) {
+                        HomePermissionBanners(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(
+                                    start = Dimens.Space4,
+                                    end = Dimens.Space4,
+                                    bottom = Dimens.Space3,
+                                ),
+                        )
+                        LazyColumn(
+                            modifier = Modifier.fillMaxSize(),
+                            contentPadding = PaddingValues(
+                                start = Dimens.Space4,
+                                end = Dimens.Space4,
+                                bottom = Dimens.Space6,
+                            ),
+                            verticalArrangement = Arrangement.spacedBy(Dimens.Space3),
+                        ) {
+                            item {
+                                val next = state.next
+                                if (next == null) {
+                                    ScheduleUnavailableCard()
+                                } else {
+                                    NextPrayerCard(state = state, next = next)
+                                }
                             }
-                        }
-                        items(state.slots, key = { it.prayer }) { slot ->
-                            val isNext = state.next?.let { !it.isTomorrow && it.prayer == slot.prayer } == true
-                            val isCurrent = !isNext && state.current == slot.prayer
-                            val isPast = !isNext && !isCurrent &&
-                                state.now?.let { slot.time.isBefore(it) } == true
-                            PrayerRowItem(
-                                slot = slot,
-                                isNext = isNext,
-                                isCurrent = isCurrent,
-                                isPast = isPast,
-                            )
+                            items(state.slots, key = { it.prayer }) { slot ->
+                                val isNext = state.next?.let { !it.isTomorrow && it.prayer == slot.prayer } == true
+                                val isCurrent = !isNext && state.current == slot.prayer
+                                val isPast = !isNext && !isCurrent &&
+                                    state.now?.let { slot.time.isBefore(it) } == true
+                                PrayerRowItem(
+                                    slot = slot,
+                                    isNext = isNext,
+                                    isCurrent = isCurrent,
+                                    isPast = isPast,
+                                    notificationsEnabled = state.notifications[slot.prayer] == true,
+                                )
+                            }
                         }
                     }
                 }
@@ -220,6 +235,7 @@ private fun PrayerRowItem(
     isNext: Boolean,
     isCurrent: Boolean,
     isPast: Boolean,
+    notificationsEnabled: Boolean,
 ) {
     val highlighted = isNext || isCurrent
     val background = if (highlighted) {
@@ -260,10 +276,27 @@ private fun PrayerRowItem(
                 style = nameStyle,
                 modifier = Modifier.weight(1f),
             )
-            if (isNext) {
-                NextBadge()
-                Spacer(Modifier.width(Dimens.Space2))
+            val notificationDescription = stringResource(
+                if (notificationsEnabled) R.string.home_notification_on else R.string.home_notification_off,
+            )
+            if (notificationsEnabled) {
+                Icon(
+                    imageVector = Icons.Filled.Notifications,
+                    contentDescription = notificationDescription,
+                    modifier = Modifier.size(Dimens.IconSm),
+                )
+            } else {
+                Icon(
+                    painter = painterResource(R.drawable.ic_notifications_off),
+                    contentDescription = notificationDescription,
+                    modifier = Modifier.size(Dimens.IconSm),
+                )
             }
+            if (isNext) {
+                Spacer(Modifier.width(Dimens.Space2))
+                NextBadge()
+            }
+            Spacer(Modifier.width(Dimens.Space3))
             Text(
                 text = slot.time.toDisplayString(),
                 style = timeStyle,

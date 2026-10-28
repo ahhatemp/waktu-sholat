@@ -2,6 +2,9 @@ package id.haikal.waktusholat.di
 
 import android.content.Context
 import androidx.room.Room
+import id.haikal.waktusholat.alarm.AlarmScheduler
+import id.haikal.waktusholat.alarm.AlarmSyncCoordinator
+import id.haikal.waktusholat.alarm.NotificationHelper
 import id.haikal.waktusholat.data.db.AppDatabase
 import id.haikal.waktusholat.data.prefs.SettingsRepository
 import id.haikal.waktusholat.data.prefs.settingsDataStore
@@ -27,5 +30,17 @@ class AppContainer(context: Context) {
 
     val prayerRepository: PrayerRepository by lazy {
         PrayerRepository(settingsRepository)
+    }
+
+    val notificationHelper: NotificationHelper by lazy {
+        NotificationHelper(appContext)
+    }
+
+    val alarmScheduler: AlarmScheduler by lazy {
+        AlarmScheduler(appContext, settingsRepository, prayerRepository)
+    }
+
+    val alarmSyncCoordinator: AlarmSyncCoordinator by lazy {
+        AlarmSyncCoordinator(alarmScheduler, settingsRepository)
     }
 }

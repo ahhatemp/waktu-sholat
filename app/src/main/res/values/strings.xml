@@ -24,6 +24,12 @@
     <string name="home_countdown_hours" tools:ignore="PluralsCandidate">%1$s dalam %2$d jam %3$d menit</string>
     <string name="home_countdown_minutes" tools:ignore="PluralsCandidate">%1$s dalam %2$d menit</string>
     <string name="home_countdown_soon">%1$s kurang dari semenit lagi</string>
+    <string name="home_banner_exact_alarm">Alarm bisa terlambat karena izin alarm presisi belum aktif.</string>
+    <string name="home_banner_exact_alarm_action">Izinkan</string>
+    <string name="home_banner_notifications">Notifikasi adzan mati karena izin notifikasi belum aktif.</string>
+    <string name="home_banner_notifications_action">Aktifkan</string>
+    <string name="home_notification_on">Notifikasi aktif</string>
+    <string name="home_notification_off">Notifikasi mati</string>
 
     <string name="monthly_prev">Bulan sebelumnya</string>
     <string name="monthly_next">Bulan berikutnya</string>
@@ -41,6 +47,65 @@
     <string name="city_error_timeout">Lokasi tidak ditemukan. Coba lagi atau pilih kota manual.</string>
     <string name="city_error_unavailable">Lokasi tidak tersedia. Pilih kota secara manual.</string>
 
-    <string name="settings_placeholder_title">Pengaturan</string>
-    <string name="settings_placeholder_body">Pengaturan aplikasi akan tampil di sini.</string>
+    <string name="settings_title">Pengaturan</string>
+    <string name="settings_notifications_title">Notifikasi &amp; Suara</string>
+    <string name="settings_notifications_description">Atur toggle per waktu, pengingat, dan suara adzan.</string>
+    <string name="settings_battery_guide_title">Panduan Baterai</string>
+    <string name="settings_battery_guide_description">Agar alarm tetap berbunyi di HP yang agresif menutup aplikasi.</string>
+
+    <string name="notification_settings_title">Notifikasi &amp; Suara</string>
+    <string name="notification_section_prayers">Notifikasi per waktu</string>
+    <string name="notification_section_reminder">Pengingat sebelum adzan</string>
+    <string name="notification_reminder_description">Notifikasi tambahan sebelum waktu sholat. Nonaktif secara default.</string>
+    <string name="reminder_off">Mati</string>
+    <string name="reminder_minutes" tools:ignore="PluralsCandidate">%1$d menit</string>
+    <string name="notification_section_sound">Suara per waktu sholat</string>
+    <string name="sound_full">Adzan penuh</string>
+    <string name="sound_short">Adzan singkat</string>
+    <string name="sound_default">Nada biasa</string>
+    <string name="sound_silent">Senyap</string>
+    <string name="sound_preview">Pratinjau suara %1$s</string>
+    <string name="sound_choose">Pilih suara untuk %1$s</string>
+
+    <string name="battery_guide_title">Panduan Baterai</string>
+    <string name="battery_guide_intro">Beberapa merek HP membatasi aplikasi di latar belakang sehingga alarm adzan bisa terlewat. Ikuti langkah berikut agar Waktu Sholat tetap berjalan.</string>
+    <string name="battery_status_exempt">Aplikasi sudah dikecualikan dari optimasi baterai.</string>
+    <string name="battery_status_not_exempt">Aplikasi belum dikecualikan dari optimasi baterai.</string>
+    <string name="battery_status_explain">Pengecualian ini membuat sistem tidak menunda alarm adzan.</string>
+    <string name="battery_exemption_action">Minta pengecualian</string>
+    <string name="battery_brands_title">Langkah per merek</string>
+    <string name="battery_guide_disclaimer">Nama menu dapat berbeda tergantung versi sistem. Jika alarm tetap terlewat, buka pengaturan aplikasi dan izinkan aktivitas latar belakang.</string>
+    <string name="battery_brand_xiaomi">Xiaomi (MIUI/HyperOS)</string>
+    <string name="battery_brand_oppo">Oppo (ColorOS)</string>
+    <string name="battery_brand_vivo">Vivo (Funtouch OS/OriginOS)</string>
+    <string name="battery_brand_samsung">Samsung (One UI)</string>
+    <string name="battery_brand_realme">Realme (realme UI)</string>
+    <string name="battery_xiaomi_step_1">Buka Pengaturan HP → Aplikasi → Kelola aplikasi → Waktu Sholat.</string>
+    <string name="battery_xiaomi_step_2">Aktifkan Autostart dan izinkan aktivitas latar belakang.</string>
+    <string name="battery_xiaomi_step_3">Di layar recent apps, tahan kartu aplikasi lalu pilih kunci.</string>
+    <string name="battery_oppo_step_1">Buka Pengaturan → Aplikasi → Manajemen aplikasi → Waktu Sholat.</string>
+    <string name="battery_oppo_step_2">Aktifkan Izinkan aktivitas latar belakang dan Izinkan pengaturan otomatis.</string>
+    <string name="battery_oppo_step_3">Di layar recent apps, tahan kartu aplikasi lalu pilih Kunci.</string>
+    <string name="battery_vivo_step_1">Buka Pengaturan → Aplikasi &amp; izin → Manajemen latar belakang.</string>
+    <string name="battery_vivo_step_2">Pilih Waktu Sholat dan atur penggunaan latar belakang ke Izinkan.</string>
+    <string name="battery_vivo_step_3">Aktifkan Autostart lewat iManager.</string>
+    <string name="battery_samsung_step_1">Buka Pengaturan → Baterai → Batas penggunaan latar belakang.</string>
+    <string name="battery_samsung_step_2">Tambahkan Waktu Sholat ke daftar aplikasi yang tidak pernah tidur.</string>
+    <string name="battery_samsung_step_3">Matikan mode hemat daya untuk aplikasi ini.</string>
+    <string name="battery_realme_step_1">Buka Pengaturan → Baterai → Optimasi aplikasi.</string>
+    <string name="battery_realme_step_2">Pilih Waktu Sholat dan matikan optimasi baterai.</string>
+    <string name="battery_realme_step_3">Aktifkan Autostart dan kunci aplikasi di recent apps.</string>
+
+    <string name="notification_channel_adzan_full">Adzan penuh</string>
+    <string name="notification_channel_adzan_full_description">Notifikasi adzan dengan suara adzan penuh.</string>
+    <string name="notification_channel_adzan_short">Adzan singkat</string>
+    <string name="notification_channel_adzan_short_description">Notifikasi adzan dengan suara adzan singkat.</string>
+    <string name="notification_channel_reminder">Pengingat adzan</string>
+    <string name="notification_channel_reminder_description">Pengingat sebelum adzan dan nada notifikasi biasa.</string>
+    <string name="notification_channel_silent">Senyap</string>
+    <string name="notification_channel_silent_description">Notifikasi tanpa suara, hanya getar.</string>
+    <string name="notification_adhan_title">Sudah masuk waktu %1$s</string>
+    <string name="notification_reminder_title">Sebentar lagi masuk waktu %1$s</string>
+    <string name="notification_location_time">%1$s · %2$s</string>
+    <string name="notification_reminder_text" tools:ignore="PluralsCandidate">%1$d menit lagi · %2$s</string>
 </resources>

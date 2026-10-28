@@ -28,10 +28,14 @@ import id.haikal.waktusholat.R
 import id.haikal.waktusholat.ui.city.CitySearchScreen
 import id.haikal.waktusholat.ui.home.HomeScreen
 import id.haikal.waktusholat.ui.monthly.MonthlyScreen
+import id.haikal.waktusholat.ui.settings.BatteryGuideScreen
+import id.haikal.waktusholat.ui.settings.NotificationSettingsScreen
 import id.haikal.waktusholat.ui.settings.SettingsScreen
 import id.haikal.waktusholat.ui.theme.BottomBarTokens
 
 private const val CITY_SEARCH_ROUTE = "city_search"
+private const val NOTIFICATION_SETTINGS_ROUTE = "settings/notifications"
+private const val BATTERY_GUIDE_ROUTE = "settings/battery_guide"
 
 enum class TopLevelDestination(
     val route: String,
@@ -102,7 +106,16 @@ fun AppNavHost(
                 MonthlyScreen(onOpenCitySearch = { navController.navigate(CITY_SEARCH_ROUTE) })
             }
             composable(TopLevelDestination.Settings.route) {
-                SettingsScreen()
+                SettingsScreen(
+                    onOpenNotifications = { navController.navigate(NOTIFICATION_SETTINGS_ROUTE) },
+                    onOpenBatteryGuide = { navController.navigate(BATTERY_GUIDE_ROUTE) },
+                )
+            }
+            composable(NOTIFICATION_SETTINGS_ROUTE) {
+                NotificationSettingsScreen(onBack = { navController.popBackStack() })
+            }
+            composable(BATTERY_GUIDE_ROUTE) {
+                BatteryGuideScreen(onBack = { navController.popBackStack() })
             }
             composable(CITY_SEARCH_ROUTE) {
                 CitySearchScreen(

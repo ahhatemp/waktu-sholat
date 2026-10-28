@@ -10,5 +10,6 @@ class WaktuSholatApp : Application() {
     override fun onCreate() {
         super.onCreate()
         container = AppContainer(this)
+        container.notificationHelper.ensureChannels()
     }
 }

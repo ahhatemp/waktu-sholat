@@ -19,4 +19,8 @@ object Dimens {
     val TouchTargetMin = 48.dp
     val PrayerRowHeight = 56.dp
     val SettingsItemMinHeight = 56.dp
+
+    val IconSm = 20.dp
+    val IconMd = 24.dp
+    val ListNumberWidth = 24.dp
 }

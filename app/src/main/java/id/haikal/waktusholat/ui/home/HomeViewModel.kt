@@ -42,6 +42,7 @@ data class HomeUiState(
     val next: NextPrayerInfo? = null,
     val current: Prayer? = null,
     val now: LocalTime? = null,
+    val notifications: Map<Prayer, Boolean> = emptyMap(),
 )
 
 class HomeViewModel(
@@ -105,6 +106,7 @@ class HomeViewModel(
             next = next,
             current = todayTimes.currentObligatoryAt(now),
             now = now.atZone(zone).toLocalTime(),
+            notifications = Prayer.entries.associateWith(settings::notifyFor),
         )
     }
 

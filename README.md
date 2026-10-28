@@ -8,7 +8,7 @@ Aplikasi waktu sholat Android yang gratis, sepenuhnya offline, tanpa iklan, dan 
 
 ## Status
 
-Modul 1 (Setup Project) — kerangka aplikasi, tema, dan navigasi.
+Modul 1–3 — kerangka aplikasi, lokasi & jadwal sholat, serta notifikasi & alarm adzan.
 
 ## Teknologi
 

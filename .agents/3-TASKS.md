@@ -218,7 +218,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Tambahkan key `notify_<prayer>` (default aktif, kecuali Imsak dan Terbit), `pre_reminder_minutes` (default 0, pilihan 5/10/15), dan `sound_<prayer>` (adzan penuh, adzan singkat, nada biasa, senyap; default adzan penuh) beserta field-nya di `Settings`.
 - **Modul:** Notifikasi & Alarm Adzan
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-12
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 1,5 jam
@@ -228,7 +228,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Sediakan dua rekaman, `adzan_full` dan `adzan_short`, dengan lisensi yang jelas dan boleh didistribusikan gratis (syarat F-Droid). Pilih format yang kecil agar ukuran APK tetap < 15 MB, lalu catat sumber dan lisensinya.
 - **Modul:** Notifikasi & Alarm Adzan
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-04
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 2 jam
@@ -238,7 +238,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Buat empat kanal: `adzan_full`, `adzan_short`, `reminder`, `silent`, dengan suara sesuai Tech Spec Bagian 3. Implementasikan `ensureChannels()` dan `show(prayer, sound)` yang memilih kanal sesuai pilihan suara. Tap notifikasi membuka `MainActivity` (PendingIntent `FLAG_IMMUTABLE`, intent eksplisit).
 - **Modul:** Notifikasi & Alarm Adzan
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-03, T-20
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 2,5 jam
@@ -248,7 +248,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Tambahkan izin `POST_NOTIFICATIONS`, `SCHEDULE_EXACT_ALARM`, `RECEIVE_BOOT_COMPLETED`, `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS`, `VIBRATE`, dan `ACCESS_COARSE_LOCATION` (jika belum ada dari T-13). Daftarkan semua receiver dengan `exported="false"`, kecuali yang menerima broadcast sistem, beserta intent-filter-nya. Pastikan tetap tidak ada izin `INTERNET`.
 - **Modul:** Notifikasi & Alarm Adzan
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-03
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 1 jam
@@ -258,7 +258,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Implementasikan `scheduleAll()`, `cancelAll()`, dan `scheduleNext()` sesuai alur C di Tech Spec Bagian 4: batalkan alarm lama, pasang alarm untuk setiap waktu aktif yang belum lewat (hari ini dan, bila perlu, besok), alarm pengingat `waktu - N menit`, dan alarm harian 00:05. Pakai `setExactAndAllowWhileIdle` dengan `requestCode` tetap. Jika izin exact alarm belum diberikan, turun ke `setAndAllowWhileIdle`.
 - **Modul:** Notifikasi & Alarm Adzan
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-14, T-19, T-22
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 6 jam
@@ -268,7 +268,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Terima broadcast alarm (jenis sholat dan penanda adzan/pengingat), tampilkan notifikasi lewat `NotificationHelper` sesuai preferensi suara, lalu panggil `scheduleNext()`. Proses harus ringan, tanpa layanan latar belakang. Pemanggilan `WidgetUpdater` ditambahkan di Modul 4.
 - **Modul:** Notifikasi & Alarm Adzan
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-21, T-23
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 3 jam
@@ -278,7 +278,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Terima alarm harian 00:05 waktu lokasi, lalu hitung jadwal hari baru dan panggil `scheduleAll()`. Pemanggilan `WidgetUpdater` ditambahkan di Modul 4.
 - **Modul:** Notifikasi & Alarm Adzan
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-23
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 1,5 jam
@@ -288,7 +288,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** `BootReceiver` (`BOOT_COMPLETED`, `MY_PACKAGE_REPLACED`), `TimeChangeReceiver` (`TIMEZONE_CHANGED`, `TIME_SET`), dan `ExactAlarmPermissionReceiver` (`ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED`). Semuanya menghitung ulang jadwal dan memanggil `scheduleAll()` sesuai tabel E di Tech Spec Bagian 4. Setelah restart hanya sisa waktu hari ini yang dijadwalkan.
 - **Modul:** Notifikasi & Alarm Adzan
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-23
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 3 jam
@@ -298,7 +298,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Amati `settings` Flow, dan setiap perubahan lokasi, metode, koreksi, toggle notifikasi, atau suara memicu `scheduleAll()`. Saat aplikasi dibuka, jalankan sinkronisasi ringan sebagai jaring pengaman: pastikan alarm hari ini ada, jika tidak jadwalkan ulang. Ini juga melengkapi alur setelah memilih kota di T-18.
 - **Modul:** Notifikasi & Alarm Adzan
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-23, T-18
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 2,5 jam
@@ -308,7 +308,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Tampilkan banner permanen di `home` jika izin exact alarm belum diberikan (alarm kurang presisi) atau izin notifikasi ditolak (tanpa adzan). Tombolnya membuka layar izin sistem yang sesuai. Banner hilang otomatis begitu izin diberikan.
 - **Modul:** Notifikasi & Alarm Adzan
 - **Prioritas:** Mid
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-16, T-22
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 2 jam
@@ -318,7 +318,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Layar `settings/notifications`: toggle per waktu sholat (FR-07), pilihan pengingat sebelum adzan 5/10/15 menit atau mati (FR-08), dan pilihan suara per waktu sholat (FR-10) dengan tombol pratinjau suara. Setiap perubahan tersimpan ke DataStore dan memicu penjadwalan ulang lewat T-27.
 - **Modul:** Notifikasi & Alarm Adzan
 - **Prioritas:** High
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-19, T-21, T-27
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 4 jam
@@ -328,7 +328,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Layar `settings/battery_guide` berisi langkah-langkah per merek yang agresif menutup aplikasi (misalnya Xiaomi, Oppo, Vivo, Samsung, Realme), plus tombol untuk meminta pengecualian optimasi baterai. Layar bisa dibuka ulang kapan saja dari pengaturan dan dari onboarding (FR-09).
 - **Modul:** Notifikasi & Alarm Adzan
 - **Prioritas:** Mid
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-06, T-22
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 3,5 jam
@@ -338,7 +338,7 @@ Estimasi kasar. Masa pengamatan alarm (T-54) dan antrean peninjauan F-Droid (T-6
 - **Deskripsi:** Pisahkan logika penentuan alarm (alarm mana yang dipasang, `requestCode`, alarm pengingat, kasus setelah Isya, perubahan zona waktu) dari pemanggilan `AlarmManager` agar bisa diuji. Test mencakup toggle nonaktif, pengingat aktif, dan tidak ada alarm duplikat.
 - **Modul:** Notifikasi & Alarm Adzan
 - **Prioritas:** Mid
-- **Status:** Todo
+- **Status:** Done
 - **Dependensi:** T-23
 - **Tanggal:** 2026-10-27
 - **Estimasi:** 3 jam

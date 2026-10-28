@@ -13,6 +13,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import id.haikal.waktusholat.domain.AsrMadhab
 import id.haikal.waktusholat.domain.CalculationMethod
+import id.haikal.waktusholat.domain.model.AdhanSound
 import id.haikal.waktusholat.domain.model.Location
 import id.haikal.waktusholat.domain.model.LocationSource
 import id.haikal.waktusholat.domain.model.Prayer
@@ -51,12 +52,24 @@ class SettingsRepository(
                 prayer to value.coerceIn(Settings.MIN_CORRECTION_MINUTES, Settings.MAX_CORRECTION_MINUTES)
             }
         }.toMap()
+        val notifications = Prayer.entries.associateWith { prayer ->
+            preferences[Keys.notify(prayer)] ?: prayer.isObligatory
+        }
+        val sounds = Prayer.entries.associateWith { prayer ->
+            AdhanSound.fromId(preferences[Keys.sound(prayer)])
+        }
+        val preReminder = preferences[Keys.PRE_REMINDER_MINUTES]
+            ?.takeIf { it in Settings.PRE_REMINDER_OPTIONS }
+            ?: 0
         return Settings(
             location = location,
             calculationMethod = method,
             asrMadhab = madhab,
             offsets = offsets,
             ihtiyathEnabled = preferences[Keys.IHTIYATH_ENABLED] ?: false,
+            notifications = notifications,
+            preReminderMinutes = preReminder,
+            sounds = sounds,
         )
     }
 
@@ -98,8 +111,12 @@ class SettingsRepository(
         preferences[Keys.ASR_MADHAB] = settings.asrMadhab.id
         Prayer.entries.forEach { prayer ->
             preferences[Keys.offset(prayer)] = settings.offsetFor(prayer)
+            preferences[Keys.notify(prayer)] = settings.notifyFor(prayer)
+            preferences[Keys.sound(prayer)] = settings.soundFor(prayer).id
         }
         preferences[Keys.IHTIYATH_ENABLED] = settings.ihtiyathEnabled
+        preferences[Keys.PRE_REMINDER_MINUTES] =
+            settings.preReminderMinutes.takeIf { it in Settings.PRE_REMINDER_OPTIONS } ?: 0
     }
 
     private object Keys {
@@ -111,7 +128,10 @@ class SettingsRepository(
         val CALC_METHOD = stringPreferencesKey("calc_method")
         val ASR_MADHAB = stringPreferencesKey("asr_madhab")
         val IHTIYATH_ENABLED = booleanPreferencesKey("ihtiyath_enabled")
+        val PRE_REMINDER_MINUTES = intPreferencesKey("pre_reminder_minutes")
 
         fun offset(prayer: Prayer) = intPreferencesKey("offset_${prayer.key}")
+        fun notify(prayer: Prayer) = booleanPreferencesKey("notify_${prayer.key}")
+        fun sound(prayer: Prayer) = stringPreferencesKey("sound_${prayer.key}")
     }
 }
